@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <MyName name="Aaron" @was-clicked="handleWasClicked"></MyName>
-    <my-list :incomingListData="anArray" @list-clicked="handleListClicked"></my-list>
+    <my-list :incomingListData="theUserArray" @list-clicked="handleListClicked"></my-list>
     <my-form :initialFormData="{}" @form-clicked="handleFormClicked"></my-form>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       /* we put some dummy data in here to pre-fill the list */
-      anArray: [
+      theUserArray: [
         { id: 0, name: { firstName: "Andrea", lastName: "Saunders" } },
         { id: 1, name: { firstName: "Aaron", lastName: "Saunders" } }
       ]
