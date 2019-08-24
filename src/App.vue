@@ -57,7 +57,11 @@ export default {
      */
     handleFormClicked: function(_data) {
       console.log(_data);
-      alert(_data.firstName + " " + _data.lastName);
+      // add the item to the array
+      this.theUserArray.push({
+        name: _data,
+        id: new Date().getTime()
+      });
     }
   }
 };
