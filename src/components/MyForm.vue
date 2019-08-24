@@ -31,6 +31,8 @@ export default {
      */
     handleBtnClicked: function() {
       this.$emit("form-clicked", this.userData);
+      // clear the ui
+      this.userData = {};
     }
   }
 };
