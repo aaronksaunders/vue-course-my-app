@@ -6,6 +6,7 @@
         <span
           @click="handleItemClicked(listItem)"
         >{{ listItem.name.firstName }} {{ listItem.name.lastName }}</span>
+        <button @click="handleDeleteItemClicked(listItem)">DELETE</button>
       </li>
     </ol>
   </div>
@@ -25,6 +26,14 @@ export default {
      */
     handleItemClicked: function(_listItem) {
       this.$emit("list-clicked", _listItem);
+    },
+    /**
+     * this will emit an "delete-item" event to the parent with the
+     * value from the current list item
+     *
+     */
+    handleDeleteItemClicked: function(_listItem) {
+      this.$emit("delete-item", _listItem);
     }
   }
 };

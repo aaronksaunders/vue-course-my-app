@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <MyName name="Aaron" @was-clicked="handleWasClicked"></MyName>
-    <my-list :incomingListData="theUserArray" @list-clicked="handleListClicked"></my-list>
+    <my-list
+      :incomingListData="theUserArray"
+      @list-clicked="handleListClicked"
+      @delete-item="handleDeleteListItem"
+    ></my-list>
     <my-form :initialFormData="{}" @form-clicked="handleFormClicked"></my-form>
   </div>
 </template>
@@ -48,6 +52,20 @@ export default {
      */
     handleListClicked: function(_data) {
       alert(_data.name.firstName + " " + _data.name.lastName);
+    },
+    /**
+     * the data from the list click DOES contain an id becuase
+     * this is handling list items, and for an object to be the
+     * list it must have an id.
+     *
+     * it is id, name.irstName and the name.lastName
+     */
+    handleDeleteListItem: function(_item) {
+      console.log("deleteListElement", _item);
+      let result = this.theUserArray.filter(element => {
+        return element.id != _item.id;
+      });
+      this.theUserArray = result;
     },
     /**
      * the data from the form click DOES NOT contain an id becuase
