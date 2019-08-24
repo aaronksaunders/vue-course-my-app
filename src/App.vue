@@ -1,26 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
     <MyName name="Aaron" @was-clicked="handleWasClicked"></MyName>
     <my-list :incomingListData="anArray" @list-clicked="handleListClicked"></my-list>
+    <my-form :initialFormData="{}" @form-clicked="handleFormClicked"></my-form>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+/** 
+    ALL of the components that are being used in this component 
+    must be imported here 
+*/
 import MyName from "./components/MyName.vue";
 import MyList from "./components/MyList.vue";
+import MyForm from "./components/MyForm.vue";
 
 export default {
   name: "app",
+  /**
+    ALL of the components that are being used in this component 
+    must be listed here 
+  */
   components: {
-    HelloWorld,
     MyName,
-    MyList
+    MyList,
+    MyForm
   },
   data() {
     return {
+      /* we put some dummy data in here to pre-fill the list */
       anArray: [
         { id: 0, name: { firstName: "Andrea", lastName: "Saunders" } },
         { id: 1, name: { firstName: "Aaron", lastName: "Saunders" } }
@@ -29,11 +37,27 @@ export default {
   },
   methods: {
     handleWasClicked: function(_data) {
-      debugger;
       alert(_data);
     },
+    /**
+     * the data from the list click DOES contain an id becuase
+     * this is handling list items, and for an object to be the
+     * list it must have an id.
+     *
+     * it is id, name.irstName and the name.lastName
+     */
     handleListClicked: function(_data) {
-      alert(_data.name.firstName);
+      alert(_data.name.firstName + " " + _data.name.lastName);
+    },
+    /**
+     * the data from the form click DOES NOT contain an id becuase
+     * this is handling when we are creating a new object.
+     *
+     * it is just the firstName and the lastName
+     */
+    handleFormClicked: function(_data) {
+      console.log(_data);
+      alert(_data.firstName + " " + _data.lastName);
     }
   }
 };
@@ -44,8 +68,8 @@ export default {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  padding: 30px;
 }
 </style>
