@@ -1,29 +1,45 @@
 <template>
   <div id="app">
-    <MyName name="Aaron" @was-clicked="handleWasClicked"></MyName>
-    <my-list
-      :incomingListData="theUserArray"
-      @list-clicked="handleListClicked"
-      @delete-item="handleDeleteListItem"
-      @edit-item="handleEditListItem"
-    ></my-list>
-    <template v-if="inEditMode">
-      <my-form
-        :initialFormData="editingUser"
-        @form-clicked="handleFormEdit"
-        @form-cancelled="handleFormCancelled"
-      ></my-form>
-    </template>
-    <template v-else>
-      <my-form
-        :initialFormData="{}"
-        @form-clicked="handleFormClicked"
-        @form-cancelled="handleFormCancelled"
-      ></my-form>
-    </template>
+    <ion-app>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Vue Class - Ionic</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content padding>
+        <ion-card padding>
+          <MyName name="Aaron" @was-clicked="handleWasClicked"></MyName>
+        </ion-card>
+        <ion-card padding>
+          <my-list
+            :incomingListData="theUserArray"
+            @list-clicked="handleListClicked"
+            @delete-item="handleDeleteListItem"
+            @edit-item="handleEditListItem"
+          ></my-list>
+        </ion-card>
+        <ion-card padding>
+          <template v-if="inEditMode">
+            <my-form
+              :initialFormData="editingUser"
+              @form-clicked="handleFormEdit"
+              @form-cancelled="handleFormCancelled"
+            ></my-form>
+          </template>
+          <template v-else>
+            <my-form
+              :initialFormData="{}"
+              @form-clicked="handleFormClicked"
+              @form-cancelled="handleFormCancelled"
+            ></my-form>
+          </template>
+        </ion-card>
+      </ion-content>
+    </ion-app>
   </div>
 </template>
-
+<style src='@ionic/core/css/core.css'></style>
+<style src='@ionic/core/css/ionic.bundle.css'></style>
 <script>
 /** 
     ALL of the components that are being used in this component 
@@ -126,7 +142,7 @@ export default {
       });
 
       this.theUserArray = edited;
-      this.editingUser = { };
+      this.editingUser = {};
     },
     /**
      */

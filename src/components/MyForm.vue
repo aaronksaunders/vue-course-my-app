@@ -2,10 +2,16 @@
   <div class="form-container">
     <h3>{{formTitle}}</h3>
     <div>
-      <input type="text" v-model="userData.firstName" />
-      <input type="text" v-model="userData.lastName" />
-      <button @click="handleBtnClicked()">Save</button>
-      <button @click="handleCancelClicked()">Cancel</button>
+      <ion-item>
+        <ion-label>First Name</ion-label>
+        <ion-input @input="userData.firstName = $event.target.value" :value="userData.firstName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Last Name</ion-label>
+        <ion-input @input="userData.lastName = $event.target.value" :value="userData.lastName"></ion-input>
+      </ion-item>
+      <ion-button @click="handleBtnClicked()">Save</ion-button>
+      <ion-button  color="danger" @click="handleCancelClicked()">Cancel</ion-button>
     </div>
   </div>
 </template>
@@ -19,11 +25,11 @@ export default {
   },
   computed: {
     /**
-     * if there is an id then we know we ae editing and we 
+     * if there is an id then we know we ae editing and we
      * are adjusting the title appropriately
      */
     formTitle: function() {
-      return  this.initialFormData.id !== undefined
+      return this.initialFormData.id !== undefined
         ? "Editing User: " + this.initialFormData.id
         : "Create New User";
     }
@@ -88,8 +94,8 @@ export default {
 </script>
 <style scoped>
 .form-container {
-  background-color: aliceblue;
+  /* background-color: aliceblue;
   padding: 10px;
-  margin: 10px;
+  margin: 10px; */
 }
 </style>

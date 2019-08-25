@@ -1,15 +1,19 @@
 <template>
   <div class="list-container">
     <h3>Show List Of Users</h3>
-    <ol>
-      <li v-for="listItem in this.incomingListData" :key="listItem.id">
-        <span
+    <ion-list>
+      <ion-item v-for="listItem in this.incomingListData" :key="listItem.id">
+        <ion-label
           @click="handleItemClicked(listItem)"
-        >{{ listItem.name.firstName }} {{ listItem.name.lastName }}</span>
-        <button @click="handleDeleteItemClicked(listItem)">DELETE</button>
-       <button @click="handleEditItemClicked(listItem)">EDIT</button>
-      </li>
-    </ol>
+        >{{ listItem.name.firstName }} {{ listItem.name.lastName }}</ion-label>
+        <ion-button @click="handleDeleteItemClicked(listItem)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+        <ion-button @click="handleEditItemClicked(listItem)">
+          <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
   </div>
 </template>
 <script>
@@ -50,8 +54,8 @@ export default {
 
 <style scoped>
 .list-container {
-  background-color: aliceblue;
-  padding: 10px;
-  margin: 10px;
+  /* background-color: aliceblue; */
+  /* padding: 10px; */
+  /* margin: 10px; */
 }
 </style>
