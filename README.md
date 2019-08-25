@@ -6,6 +6,8 @@ This repo takes you through the steps of converting the codepen assignment into 
 - STEP 2: get the form component to add an item to the list when the user clicks the save button in the Form Component. The source code can be found on the branch [Step Two](https://github.com/aaronksaunders/vue-course-my-app/tree/step-2)
 - STEP 3: get the list component to delete an item from the list when the user clicks the delete button in the List Component. The source code can be found on the branch [Step Three](https://github.com/aaronksaunders/vue-course-my-app/tree/step-3)
 - STEP 4: get the list component to update an item from the list when the user clicks the update button in the List Component. This will force the Form Component to enter "editingMode" and load the selected list item in to be edited. The source code can be found on the branch [Step Four](https://github.com/aaronksaunders/vue-course-my-app/tree/step-4)
+- STEP 5: Style the application using [Ionic Framework](https://ionicframework.com/docs/components). The source code can be found on the branch [Step Five](https://github.com/aaronksaunders/vue-course-my-app/tree/step-5)
+
 
 
 ## Project setup
