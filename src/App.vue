@@ -5,8 +5,22 @@
       :incomingListData="theUserArray"
       @list-clicked="handleListClicked"
       @delete-item="handleDeleteListItem"
+      @edit-item="handleEditListItem"
     ></my-list>
-    <my-form :initialFormData="{}" @form-clicked="handleFormClicked"></my-form>
+    <template v-if="inEditMode">
+      <my-form
+        :initialFormData="editingUser"
+        @form-clicked="handleFormEdit"
+        @form-cancelled="handleFormCancelled"
+      ></my-form>
+    </template>
+    <template v-else>
+      <my-form
+        :initialFormData="{}"
+        @form-clicked="handleFormClicked"
+        @form-cancelled="handleFormCancelled"
+      ></my-form>
+    </template>
   </div>
 </template>
 
@@ -30,8 +44,14 @@ export default {
     MyList,
     MyForm
   },
+  computed: {
+    inEditMode: function() {
+      return this.editingUser.id != undefined ? true : false;
+    }
+  },
   data() {
     return {
+      editingUser: {},
       /* we put some dummy data in here to pre-fill the list */
       theUserArray: [
         { id: 0, name: { firstName: "Andrea", lastName: "Saunders" } },
@@ -60,6 +80,18 @@ export default {
      *
      * it is id, name.irstName and the name.lastName
      */
+    handleEditListItem: function(_item) {
+      alert(_item.name.firstName + " " + _item.name.lastName);
+      this.editingUser = { ..._item };
+    },
+
+    /**
+     * the data from the list click DOES contain an id becuase
+     * this is handling list items, and for an object to be the
+     * list it must have an id.
+     *
+     * it is id, name.irstName and the name.lastName
+     */
     handleDeleteListItem: function(_item) {
       console.log("deleteListElement", _item);
       let result = this.theUserArray.filter(element => {
@@ -74,12 +106,33 @@ export default {
      * it is just the firstName and the lastName
      */
     handleFormClicked: function(_data) {
-      console.log(_data);
+      console.log("handleFormClicked", _data);
       // add the item to the array
       this.theUserArray.push({
         name: _data,
         id: new Date().getTime()
       });
+    },
+    /**
+     */
+    handleFormEdit: function(_item) {
+      console.log("handleFormEdit", _item);
+      let edited = this.theUserArray.map(item => {
+        if (item.id == _item.id) {
+          return { ..._item };
+        } else {
+          return item;
+        }
+      });
+
+      this.theUserArray = edited;
+      this.editingUser = { };
+    },
+    /**
+     */
+    handleFormCancelled: function(_data) {
+      console.log(_data);
+      this.editingUser = {};
     }
   }
 };
